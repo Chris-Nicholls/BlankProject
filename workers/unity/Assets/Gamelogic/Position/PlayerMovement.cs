@@ -1,5 +1,4 @@
-﻿using Camera;
-using Improbable.Unity.Visualizer;
+﻿using Improbable.Unity.Visualizer;
 using Player;
 using UnityEngine;
 

@@ -1,7 +1,7 @@
 ﻿using Assets.Gamelogic.Player;
 using UnityEngine;
 
-namespace Camera
+namespace Assets.Gamelogic.Camera
 {
     
     public class CameraFollow : MonoBehaviour

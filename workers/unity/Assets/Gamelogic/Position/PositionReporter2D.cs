@@ -1,15 +1,13 @@
-﻿using Camera;
-using Improbable.Math;
+﻿using Improbable.Math;
 using Improbable.Unity.Visualizer;
-using Player;
+using Position;
 using UnityEngine;
 
-namespace Position
+namespace Assets.Gamelogic.Position
 {
     public class PositionReporter2D : MonoBehaviour
     {
-        [Require]
-        private SimplePosition.Writer Position;
+        [Require] private SimplePosition.Writer Position;
 
         private SimplePosition.Update _positionUpdate = new SimplePosition.Update();
         private Coordinates _playerCoordinates;
