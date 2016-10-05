@@ -12,7 +12,7 @@ namespace Assets.Gamelogic.Position
         private SimplePosition.Update _positionUpdate = new SimplePosition.Update();
         private Coordinates _playerCoordinates;
 
-        public void Update()
+        public void FixedUpdate()
         {
             var position = transform.position;
             _playerCoordinates.X = position.x;

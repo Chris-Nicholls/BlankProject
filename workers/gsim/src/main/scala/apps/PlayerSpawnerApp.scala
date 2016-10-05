@@ -17,7 +17,7 @@ class PlayerSpawnerApp(world: AppWorld, logger: Logger) extends WorldApp {
   val range = SpawnSettings.botSpawnRange.get().toInt
   (0 until SpawnSettings.botSpawnNumber.get.toInt).foreach{
     i =>
-      world.entities.spawnEntity(BotDescription.apply(Coordinates(Random.nextGaussian()*range, 0, Random.nextGaussian()*range)))
+      world.entities.spawnEntity(BotDescription.apply(Coordinates((Random.nextDouble()-0.5)*range, 0, (Random.nextDouble()-0.5)*range)))
   }
 
   def engineConnected(engineConnectedMsg: EngineConnected): Unit = {

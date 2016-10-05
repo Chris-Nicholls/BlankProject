@@ -15,6 +15,11 @@
       "value": "true"
     },
     {
+      "name": "engine_range_limit_prefix",
+      "value": "UnityFSim"
+    },
+
+    {
       "name": "engine_automatic_scaling_enabled",
       "value": "true"
     },
@@ -24,7 +29,7 @@
     },
     {
       "name": "entity_activator",
-      "value": "improbable.corelib.entity.CoreLibraryEntityActivator"
+      "value": "improbable.gsim.papi.NoOpEntityActivator"
     },
     {
       "name": "game_chunk_size",
@@ -37,6 +42,26 @@
     {
       "name": "player_engine_type",
       "value": "UnityClient"
+    }
+    ,{"name": "loadbalancer_enable", "value": "false"}
+    ,{"name": "loadbalancer_hex_grid", "value":"true"}
+    ,{"name": "loadbalancer_worker_range", "value":"800"}
+    ,{"name": "loadbalancer_grid_size", "value":"5"}
+
+  ],
+  "worker_flagz": [
+    {
+      "worker_type": "gsim",
+      "flagz": [
+        {
+          "name": "bot_spawn_number",
+          "value": "10000"
+        },
+        {
+          "name": "bot_spawn_range",
+          "value": "5000"
+        }
+      ]
     }
   ],
   "nodes": [
@@ -64,11 +89,6 @@
           ]
         },
         {
-          "name": "AssetDatabaseModule",
-          "params": [
-          ]
-        },
-        {
           "name": "EngineStartupModuleOracleModule",
           "params": [
           ]
@@ -85,11 +105,6 @@
         },
         {
           "name": "RouterModule",
-          "params": [
-          ]
-        },
-        {
-          "name": "EngineStartupModule",
           "params": [
           ]
         },
@@ -134,7 +149,23 @@
           ]
         }
       ],
-      "size": "single"
+      "size": "octa"
+    },
+    {
+      "name": "engine_starter_1",
+      "modules": [
+        {
+          "name": "EngineStartupModule",
+          "params": [
+          ]
+        },
+        {
+          "name": "AssetDatabaseModule",
+          "params": [
+          ]
+        }
+      ],
+      "size": "octa"
     }
   ]
 }
