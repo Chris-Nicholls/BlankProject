@@ -1,0 +1,6 @@
+package position;
+
+component SimplePosition {
+	id = 1001;
+	EntityPosition position = 1;
+}

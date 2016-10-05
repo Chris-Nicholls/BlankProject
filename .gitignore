@@ -1,3 +1,5 @@
 spatial.log
 spatialos_worker_packages.json
 build/
+.idea/
+logs/atmos.log

@@ -9,7 +9,7 @@
   "flagz": [
     {
       "name": "entity_activator",
-      "value": "improbable.corelib.entity.CoreLibraryEntityActivator"
+      "value": "improbable.gsim.papi.NoOpEntityActivator"
     },
     {
       "name": "game_world_edge_length",

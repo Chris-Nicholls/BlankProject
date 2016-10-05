@@ -1,0 +1,10 @@
+package player;
+
+component PlayerValues{
+	id = 1002;
+	float speed = 1;
+}
+
+component LocalPlayer {
+	id = 1003;
+}
