@@ -3,7 +3,6 @@ package improbable.bridgesettings
 import improbable.corelib.BridgeSettings.UnityClientAssetContextDiscriminator
 import improbable.fapi.bridge.{BridgeSettings, BridgeSettingsResolver, ConstantEngineLoadPolicy, PerEntityOrderedStateUpdateQos}
 import improbable.fapi.network.RakNetLinkSettings
-import improbable.unity.fabric.AuthoritativeEntityOnly
 import improbable.unity.fabric.engine.EnginePlatform
 import improbable.unity.fabric.satisfiers.SatisfyVisual
 
@@ -14,7 +13,7 @@ object UnityClientBridgeSettings extends BridgeSettingsResolver {
     linkSettings = RakNetLinkSettings(),
     enginePlatform = EnginePlatform.UNITY_CLIENT_ENGINE,
     constraintSatisfier = SatisfyVisual,
-    entityInterestPolicy = AuthoritativeEntityOnly(),
+    entityInterestPolicy = RangedAuthority(200),
     engineLoadPolicy = ConstantEngineLoadPolicy(0.5),
     stateUpdateQos = PerEntityOrderedStateUpdateQos
   )

@@ -2,7 +2,7 @@ package improbable.bridgesettings
 
 import improbable.fapi.bridge._
 import improbable.fapi.network.RakNetLinkSettings
-import improbable.unity.fabric.AuthoritativeEntityOnly
+import improbable.serialization.KryoSerializable
 import improbable.unity.fabric.bridge.FSimAssetContextDiscriminator
 import improbable.unity.fabric.engine.EnginePlatform
 import improbable.unity.fabric.satisfiers.SatisfyPhysics
@@ -14,7 +14,7 @@ object UnityFSimBridgeSettings extends BridgeSettingsResolver {
     RakNetLinkSettings(),
     EnginePlatform.UNITY_FSIM_ENGINE,
     SatisfyPhysics,
-    AuthoritativeEntityOnly(),
+    RangedAuthority(100),
     MetricsEngineLoadPolicy,
     PerEntityOrderedStateUpdateQos
   )
@@ -27,3 +27,16 @@ object UnityFSimBridgeSettings extends BridgeSettingsResolver {
     }
   }
 }
+case class RangedAuthority(range: Double) extends EntityInterestPolicy with KryoSerializable {
+
+  private val defaultInterestType = Some(RangedInterest(range))
+
+  override def interestTypeFor(entity: EngineEntity): Option[InterestType] = {
+    if (entity.isAuthoritativeOnEngine) {
+      defaultInterestType
+    } else {
+      None
+    }
+  }
+}
+

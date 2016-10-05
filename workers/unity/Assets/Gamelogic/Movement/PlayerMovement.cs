@@ -2,7 +2,7 @@
 using Player;
 using UnityEngine;
 
-namespace Assets.Gamelogic.Position
+namespace Assets.Gamelogic.Movement
 {
     [RequireComponent(typeof(Rigidbody2D))]
     class PlayerMovement: MonoBehaviour
@@ -17,7 +17,7 @@ namespace Assets.Gamelogic.Position
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
             MovePlayer();
         }

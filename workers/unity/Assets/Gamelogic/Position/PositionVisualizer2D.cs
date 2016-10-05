@@ -1,5 +1,4 @@
-﻿using System;
-using Improbable.Unity.Visualizer;
+﻿using Improbable.Unity.Visualizer;
 using Position;
 using UnityEngine;
 

@@ -1,0 +1,6 @@
+package bot;
+
+component Waypoint {
+  id = 1004;
+  Vector3f next = 1;
+}
