@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace Assets.Gamelogic.Position
 {
-    class PositionVisualizer2D: MonoBehaviour
+    class PositionVisualizer2D : MonoBehaviour
     {
-        [Require]
-        private SimplePosition.Reader Position;
+        [Require] private SimplePosition.Reader Position;
+
+        private Vector3 _position;
 
         public void OnEnable()
         {
@@ -17,7 +18,9 @@ namespace Assets.Gamelogic.Position
 
         private void SetPosition()
         {
-            transform.position = new Vector3((float) Position.Data.position.X, (float) Position.Data.position.Z, 0);
+            _position.x = (float) Position.Data.position.X;
+            _position.y = (float) Position.Data.position.Z;
+            transform.position = _position;
         }
 
         public void Update()
