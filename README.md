@@ -30,7 +30,7 @@ public class PositionReporter2D : MonoBehaviour
     private SimplePosition.Update _positionUpdate = new SimplePosition.Update();
     private Coordinates _playerCoordinates;
 
-    public void Update()
+    public void FixedUpdate()
     {
         var position = transform.position;
         _playerCoordinates.X = position.x;
@@ -64,7 +64,7 @@ class PositionVisualizer2D : MonoBehaviour
             transform.position = _position;
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
             if (!Position.HasAuthority)
             {
@@ -74,4 +74,22 @@ class PositionVisualizer2D : MonoBehaviour
     }
 ```
 
-This is enough to get us started. We can move entities around, and see other entities move too. Nice! But it is very wasteful. We can do much better. Before we start looking at how we can improve things, we better have some metrics to compare against. To do this we're going to spin up a simulation with 10,000 simple entities moving around sending state updates. While this simulation is running, we'll collect various metrics we can use to see if our optimisations are working. 
+This is enough to get us started. We can move entities around, and see other entities move too. Nice! But it is very wasteful. We can do much better. Before we start looking at how we can improve things, we better have some metrics to compare against. To do this we're going to spin up a simulation with 10,000 simple entities moving around sending state updates. While this simulation is running, we'll collect various metrics we can use to see if our optimisations are working.
+
+
+To keep variation between runs as low as possible, we'll run our 10,000 bot simulations with a fixed topology: Two machines, one running 25 instances of Unity in a fixed grid, and the other master server running everything else. This will end up being overkill, but we want to be able to see the effects of our optimisation as clearly as possible.  
+
+
+
+The resuts:
+
+| Metric | No Optimisation |
+|---------------------------------|:------:|
+|Worker to bridge Messages | 200,000 messages/s|
+|Worker to Bridge Network | 1 MB/s |
+| CPU usage (Master) | 26 s/s |
+| CPU usage (Workers) |  21 s/s |
+| Worker Load average | 0.53 |
+
+
+So first up, do these number make sense? Well, we have 10,000 entities each sending a sate update inside unity's fixed update loop, which we set to tick at 20hz, so 200,000 messages a second is what we expect. With 1 MB/s bandwidth being used, this gives us 50B per message, and 1kB/s per entity. This is around what we expect, since the majority of messages contain three doubles, plus one one variable length int to identify which entity the message is for and one variable length int to identify which component is being updated.
