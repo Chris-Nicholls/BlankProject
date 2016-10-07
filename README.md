@@ -102,7 +102,7 @@ The resuts:
 |---------------------------------|:------:|
 | Worker to bridge Messages | 200,000 messages/s|
 | Worker to Bridge Network | 8.4 MB/s |
-| Average Message Size      | 42 B         |
+| Average Message Size      | 44 B         |
 | Bandwidth per entity | 840 B/s |
 | CPU usage (Master) | 26 s/s |
 | CPU usage (Workers) |  19 s/s |
@@ -219,7 +219,7 @@ With this in place, we are good to go and see what effect this has had on our me
 |---------------------------|:------------:|:---------------|
 | Worker to bridge Messages | 200,000 msg/s| 200,000 msg/s  |
 | Worker to Bridge Network  | 8.4 MB/s     | 4.1 MB/s       |
-| Average Message Size      | 42 B         | 20.6 B         |   
+| Average Message Size      | 44 B         | 21.4 B         |   
 | Bandwidth per entity      | 840 B/s      | 413 B/s        |
 | CPU usage (Master)        | 26 s/s       | 23 s/s         |
 | CPU usage (Workers)       | 19 s/s       | 19 s/s         |
@@ -280,13 +280,13 @@ This change turns out to have a relatively small effect.
 
 | Metric                    | No Optimisation | Quantized | Quantized No Duplication  |
 |---------------------------|:------------:|:---------------|-------------------------|
-| Worker to bridge Messages | 200k msg/s   | 200k msg/s     | 200k msg/s
-| Worker to Bridge Network  | 8.4 MB/s     | 4.1 MB/s       | 3.1 MB/s
-| Average Message Size      | 42 B         | 20.6 B         | 15.4 B
+| Worker to bridge Messages | 200k msg/s   | 200k msg/s     | 183k msg/s
+| Worker to Bridge Network  | 8.4 MB/s     | 4.1 MB/s       | 3.2 MB/s
+| Average Message Size      | 44 B         | 21.4 B         | 18.3 B
 | Bandwidth per entity      | 840 B/s      | 413 B/s        | 308 B/s
-| CPU usage (Master)        | 26 s/s       | 23 s/s         | 25 s/s
+| CPU usage (Master)        | 26 s/s       | 23 s/s         | 22 s/s
 | CPU usage (Workers)       | 19 s/s       | 19 s/s         | 18 s/s
-| Worker Load average       | 0.53         | 0.51           | 0.44
+| Worker Load average       | 0.53         | 0.51           | 0.41
 
 In particular, it doesn't really seem to cut down on the number of messages we actually send!
 The reason for this is to do with how entities move and the level of quantization.
@@ -301,13 +301,13 @@ This is probably far to coarse to use in a real game, but should give us an idea
 
 | Metric                    | No Optimisation | Quantized (20 cm) | Quantization (1m)
 |---------------------------|:------------:|:---------------|----------------|
-| Worker to bridge Messages | 200k msg/s   | 200k msg/s     | 63.4k msg/s
-| Worker to Bridge Network  | 8.4 MB/s     | 3.1 MB/s       | 1.0 MB/s
+| Worker to bridge Messages | 200k msg/s   | 183 msg/s      | 63.4k msg/s
+| Worker to Bridge Network  | 8.4 MB/s     | 3.2 MB/s       | 1.0 MB/s
 | Average Message Size      | 42 B         | 15.4 B         | 15.7 B
 | Bandwidth per entity      | 840 B/s      | 308 B/s        | 102 B/s
-| CPU usage (Master)        | 26 s/s       | 25 s/s         | 15 s/s
+| CPU usage (Master)        | 26 s/s       | 22 s/s         | 15 s/s
 | CPU usage (Workers)       | 19 s/s       | 18 s/s         | 8 s/s
-| Worker Load average       | 0.53         | 0.44           | 0.13
+| Worker Load average       | 0.53         | 0.41           | 0.13
 
 Much better!
 If you don't need much precision, then you can do much better than the first implementation.

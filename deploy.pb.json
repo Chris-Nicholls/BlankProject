@@ -67,7 +67,7 @@
         },
         {
           "name": "quantization_scale",
-          "value": "1"
+          "value": "0.2"
         }
       ]
     }
