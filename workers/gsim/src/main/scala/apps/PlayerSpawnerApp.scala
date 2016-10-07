@@ -1,6 +1,6 @@
 package apps
 
-import entities.{BotDescription, PlayerDescription}
+import entities.{QuantizedBotDescription, PlayerDescription}
 import improbable.flagz.{FlagContainer, FlagInfo, ScalaFlagz}
 import improbable.logging.Logger
 import improbable.math.Coordinates
@@ -17,7 +17,7 @@ class PlayerSpawnerApp(world: AppWorld, logger: Logger) extends WorldApp {
   val range = SpawnSettings.botSpawnRange.get().toInt
   (0 until SpawnSettings.botSpawnNumber.get.toInt).foreach{
     i =>
-      world.entities.spawnEntity(BotDescription.apply(Coordinates((Random.nextDouble()-0.5)*range, 0, (Random.nextDouble()-0.5)*range)))
+      world.entities.spawnEntity(QuantizedBotDescription.apply(Coordinates((Random.nextDouble()-0.5)*range, 0, (Random.nextDouble()-0.5)*range)))
   }
 
   def engineConnected(engineConnectedMsg: EngineConnected): Unit = {
@@ -51,4 +51,10 @@ object SpawnSettings extends FlagContainer {
   @FlagInfo(help="Spawn range of bots", name="bot_spawn_range")
   val botSpawnRange = ScalaFlagz.valueOf(500)
 
+  @FlagInfo(help="Speed of bots", name="bot_speed")
+  val botSpeed = ScalaFlagz.valueOf(5)
+
+
+  @FlagInfo(help="the scale of the quantization", name="quantization_scale")
+  val quantizationScale = ScalaFlagz.valueOf(0.3f)
 }

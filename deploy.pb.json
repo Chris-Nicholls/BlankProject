@@ -60,6 +60,14 @@
         {
           "name": "bot_spawn_range",
           "value": "5000"
+        },
+        {
+          "name": "bot_speed",
+          "value": "5"
+        },
+        {
+          "name": "quantization_scale",
+          "value": "1"
         }
       ]
     }

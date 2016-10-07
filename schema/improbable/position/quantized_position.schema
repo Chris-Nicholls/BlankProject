@@ -1,0 +1,9 @@
+package position;
+
+
+component QuantizedPosition {
+  id = 1005;
+  sint32 x = 1;
+  sint32 y = 2;
+  float scale = 3;
+}

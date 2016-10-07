@@ -29,7 +29,7 @@ namespace Assets.Gamelogic.Movement
             _velocity.y = GetDelta(transform.position.y, Waypoint.Data.next.Y, ArrivalThreshold) * Player.Data.speed;
             _rigidbody.velocity = _velocity;
 
-            if (_velocity.magnitude == 0)
+            if (_velocity.magnitude == 0 || _rigidbody.velocity.magnitude == 0)
             {
                 var waypoint = Random.insideUnitSphere * 100;
                 waypoint.z = 0;
